@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_22_153738) do
+ActiveRecord::Schema.define(version: 2021_01_22_162935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "goals", force: :cascade do |t|
     t.string "question"
@@ -34,6 +40,15 @@ ActiveRecord::Schema.define(version: 2021_01_22_153738) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trip_id"], name: "index_notes_on_trip_id"
+  end
+
+  create_table "notes_categories", force: :cascade do |t|
+    t.bigint "note_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_notes_categories_on_category_id"
+    t.index ["note_id"], name: "index_notes_categories_on_note_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -62,5 +77,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_153738) do
 
   add_foreign_key "goals", "trips"
   add_foreign_key "notes", "trips"
+  add_foreign_key "notes_categories", "categories"
+  add_foreign_key "notes_categories", "notes"
   add_foreign_key "trips", "users"
 end
