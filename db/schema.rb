@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_180106) do
+ActiveRecord::Schema.define(version: 2021_01_22_153738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goals", force: :cascade do |t|
+    t.string "question"
+    t.text "answer"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_goals_on_trip_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "content"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "location"
+    t.date "date"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_id"], name: "index_notes_on_trip_id"
+  end
 
   create_table "trips", force: :cascade do |t|
     t.date "start_date"
@@ -39,5 +60,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_180106) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "goals", "trips"
+  add_foreign_key "notes", "trips"
   add_foreign_key "trips", "users"
 end
