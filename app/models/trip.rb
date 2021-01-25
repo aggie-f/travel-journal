@@ -4,8 +4,7 @@ class Trip < ApplicationRecord
   has_many :goals
   has_many_attached :photos
   has_many :collaborations
-  has_many :users, through: :collaborations
-  # users ? guest_id
+  has_many :guests, class_name: "User", through: :collaborations
 
   validates :destination, presence: true
 end
