@@ -1,2 +1,24 @@
 <h1>Trips#new</h1>
 <p>Find me in app/views/trips/new.html.erb</p>
+<p>This will be a modal in show page</p>
+
+<h1>Trips#create</h1>
+<p>Find me in app/views/trips/create.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div  class="card col-6 py-3">
+      <h1 class="text-center">New Trip</h1>
+      <%= simple_form_for @trip do |f| %>
+        <%= f.input :destination,
+                    required: true %>
+        <%= f.input :start_date, as: :string, label: false, input_html: {class: "datepicker form-control", placeholder: "Start date"} %>
+        <%= f.input :end_date, as: :string, label: false, input_html: {class: "datepicker form-control", placeholder: "End date"} %>
+
+
+        <%= f.submit "Done", class: "btn btn-warning btn-block" %>
+      <% end %>
+      <br>
+      <!-- <%= link_to 'Back', root_path, class: "btn btn-dark btn-block" %> -->
+    </div>
+  </div>
+</div>
