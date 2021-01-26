@@ -1,0 +1,7 @@
+<h4>Edit goals</h4>
+    <%= simple_form_for @goal do |f| %>
+        <%= f.input :question %>
+        <%= f.input :answer %>
+        <br>
+        <%= f.submit "Add a goal", class:"btn btn-primary" %>
+    <% end %>

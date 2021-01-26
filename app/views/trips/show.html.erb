@@ -11,4 +11,16 @@
     <% end %>
 <% end %>
 
+<% if @trip.goals.empty? %>
+    <p>No goals</p>
+<%else%>
+    <% @trip.goals.each do |goal| %>
+    <p><strong><%= goal.question %></strong> <%=link_to "❌", goal_path(goal), method: :delete %> <%= link_to "📝", edit_goal_path(goal) %></p>
+    <p><strong><%= goal.answer %></strong></p>
+
+    <% end %>
+<% end %>
+
 <%= link_to "Add a note", new_trip_note_path(@trip) %>
+<%= link_to "Add a goal", new_trip_goal_path(@trip) %>
+
