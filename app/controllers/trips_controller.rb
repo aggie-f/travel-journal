@@ -1,9 +1,10 @@
 class TripsController < ApplicationController
   def index
-    # @trips = Trip.where(owner_id: current_user.id)
-    @owner_trips = Trip.where(owner_id: current_user.id)
+    
+    @trips = Trip.where(owner_id: current_user.id)
     @shared_trips = current_user.shared_trips
-    @trips = [@owner_trips, @shared_trips]
+    # @trips = [@owner_trips, @shared_trips]
+    # @owner_trips = Trip.where(owner_id: current_user.id)
   end
 
   def show
