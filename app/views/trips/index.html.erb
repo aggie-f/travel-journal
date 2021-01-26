@@ -1,8 +1,14 @@
-<h1>Trips#index</h1>
-<p>Find me in app/views/trips/index.html.erb</p>
-<% @trips.each do |trip| %>
-<p>Trip to: <%= trip.destination %></p>
-<p>From: <%= trip.start_date %></p>
-<p>To: <%= trip.end_date %></p>
-<p>Owner ID: <%= trip.owner.id %></p>
-<% end %>
+<div class="container">
+    <h1>Your Trips</h1>
+
+    <% @trips.each do |trip| %>
+        <div class="card">
+            <div class="card-body">
+                <p><%=link_to "Trip to #{trip.destination}", trip_path(trip) %></p>
+                <p>From: <%= trip.start_date %></p>
+                <p>To: <%= trip.end_date %></p>
+                <p>Owner ID: <%= trip.owner.id %></p>
+            </div>
+        </div>
+    <% end %>
+</div>
