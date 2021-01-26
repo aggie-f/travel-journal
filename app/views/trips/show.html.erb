@@ -1,2 +1,14 @@
 <h1>Trips#show</h1>
 <p>Find me in app/views/trips/show.html.erb</p>
+
+<h2>Your trip to: <strong><%= @trip.destination %></strong> </h2>
+
+<% if @trip.notes.empty? %>
+    <p>No notes</p>
+<%else%>
+    <% @trip.notes.each do |note| %>
+    <p><%= note.content %> <%=link_to "❌", note_path(note), method: :delete %> <%= link_to "📝", edit_note_path(note) %><p>
+    <% end %>
+<% end %>
+
+<%= link_to "Add a note", new_trip_note_path(@trip) %>

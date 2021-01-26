@@ -1,0 +1,6 @@
+<h4>Add a review</h4>
+    <%= simple_form_for [ @trip, @note ] do |f| %>
+        <%= f.input :content %>
+        <br>
+        <%= f.submit "Add a note", class:"btn btn-primary" %>
+    <% end %>
