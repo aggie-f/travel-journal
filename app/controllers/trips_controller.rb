@@ -1,6 +1,9 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.where(owner_id: current_user.id)
+    # @trips = Trip.where(owner_id: current_user.id)
+    @owner_trips = Trip.where(owner_id: current_user.id)
+    @shared_trips = current_user.shared_trips
+    @trips = [@owner_trips, @shared_trips]
   end
 
   def show
@@ -15,7 +18,7 @@ class TripsController < ApplicationController
     @trip = Trip.new(trip_params)
     @trip.owner = current_user
    # @trip.collaborations = Collaboration.new
-   # @trip.collaborations.user = current_user  
+   # @trip.collaborations.user = current_user
       if @trip.save
         redirect_to trips_path
       else
