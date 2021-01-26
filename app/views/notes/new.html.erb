@@ -1,6 +1,8 @@
-<h4>Add a review</h4>
+<h4>Add a note</h4>
     <%= simple_form_for [ @trip, @note ] do |f| %>
         <%= f.input :content %>
+        <%= f.association :categories, collection: Category.all, as: :check_boxes, wrapper: :vertical_collection_inline, input_html: { class: "box-for-change" } %>
         <br>
+        
         <%= f.submit "Add a note", class:"btn btn-primary" %>
     <% end %>
