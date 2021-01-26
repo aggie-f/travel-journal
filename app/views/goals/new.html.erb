@@ -1,7 +1,0 @@
-<h4>Add new goal</h4>
-    <%= simple_form_for [ @trip, @goal ] do |f| %>
-        <%= f.input :question %>
-        <%= f.input :answer, :collection => %w[How Why What] %>
-        <br>
-        <%= f.submit "Add a note", class:"btn btn-primary" %>
-    <% end %>
