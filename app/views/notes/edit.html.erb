@@ -1,0 +1,6 @@
+<h4>Edit note</h4>
+    <%= simple_form_for @note do |f| %>
+        <%= f.input :content %>
+        <br>
+        <%= f.submit "Add a note", class:"btn btn-primary" %>
+    <% end %>
