@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_174916) do
+ActiveRecord::Schema.define(version: 2021_01_25_134055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,8 +69,6 @@ ActiveRecord::Schema.define(version: 2021_01_25_174916) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "owner_id"
-    t.bigint "guest_id"
-    t.index ["guest_id"], name: "index_trips_on_guest_id"
     t.index ["owner_id"], name: "index_trips_on_owner_id"
   end
 
@@ -92,6 +90,5 @@ ActiveRecord::Schema.define(version: 2021_01_25_174916) do
   add_foreign_key "notes", "trips"
   add_foreign_key "notes_categories", "categories"
   add_foreign_key "notes_categories", "notes"
-  add_foreign_key "trips", "users", column: "guest_id"
   add_foreign_key "trips", "users", column: "owner_id"
 end
