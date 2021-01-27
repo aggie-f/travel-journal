@@ -1,26 +1,31 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<div class="container">
+    <h2>Your trip to: <strong><%= @trip.destination %></strong> </h2>
+    <p>Your goals:</p>
+    <% if @trip.goals.empty? %>
+        <p>No goals</p>
+    <%else%>
+        <% @trip.goals.each do |goal| %>
+        <p><strong><%= goal.question %></strong><small><%=link_to "❌", goal_path(goal), method: :delete %> <%= link_to "📝", edit_goal_path(goal) %></small></p>
+        <p><%= goal.answer %></p>
 
-<h2>Your trip to: <strong><%= @trip.destination %></strong> </h2>
-
-<% if @trip.notes.empty? %>
-    <p>No notes</p>
-<%else%>
-    <% @trip.notes.each do |note| %>
-    <p><%= note.content %> <%=link_to "❌", note_path(note), method: :delete %> <%= link_to "📝", edit_note_path(note) %><p>
+        <% end %>
     <% end %>
-<% end %>
 
-<% if @trip.goals.empty? %>
-    <p>No goals</p>
-<%else%>
-    <% @trip.goals.each do |goal| %>
-    <p><strong><%= goal.question %></strong> <%=link_to "❌", goal_path(goal), method: :delete %> <%= link_to "📝", edit_goal_path(goal) %></p>
-    <p><strong><%= goal.answer %></strong></p>
-
+    <% if @trip.notes.empty? %>
+        <p>No notes</p>
+    <%else%>
+        <% @trip.notes.each do |note| %>
+        <div class="card">
+        <p><%= note.content %> <%=link_to "❌", note_path(note), method: :delete %> <%= link_to "📝", edit_note_path(note) %><p>
+        <small>Categories:</small>    
+            <% note.categories.each do |category| %>
+                <small><%= category.name %></small>
+            <% end %>
+        </div>
+        <% end %>
     <% end %>
-<% end %>
 
-<%= link_to "Add a note", new_trip_note_path(@trip) %>
-<%= link_to "Add a goal", new_trip_goal_path(@trip) %>
 
+    <%= link_to "Add a note", new_trip_note_path(@trip) %>
+    <%= link_to "Add a goal", new_trip_goal_path(@trip) %>
+</div>
