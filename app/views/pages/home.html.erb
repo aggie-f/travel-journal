@@ -1,2 +1,10 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<% if user_signed_in? %>
+    <p>Hello, <%= current_user.name %> </p>
+    <p>Here are <%= link_to "your trips", trips_path %> </p>
+<% else %>
+    <p>Hello there!</p>
+<% end %>
+
